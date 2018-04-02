@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
+		
+		<title></title>
+	</head>
+	<body>
+		<p>Pictures:<br>
+			{% if img_loc is not none %}
+				{% for imgs in img_loc %}
+					{% if imgs !='' %}
+						<!-- {{img_loc}}
+						{{imgs}} -->
+						<!-- <img class="myImg"src="{{url_for('static', filename= user+'/'+imgs )}}"width="20%" height="20%"> -->
+						<!-- <img src="{{url_for('static',filename=user+'/'+imgs)}}"> -->
+						<a class="lightbox" href="#{{imgs}}">
+							<img class="myImg"src="{{url_for('static', filename= "users/"+user+'/'+imgs  )}}" width="20%" height="20%">
+						</a>
+						<div class="lightbox-target" id="{{imgs}}">
+							<img class="myImg"src="{{url_for('static', filename= "users/"+user+'/'+imgs  )}}">
+							
+							<a class="lightbox-close" href="#"></a>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endif%}
+	</body>
+</html>
