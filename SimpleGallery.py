@@ -1,7 +1,4 @@
 from flask import Flask, render_template, request, redirect, flash, Markup, send_from_directory
-# from flask_sqlalchemy import SQLAlchemy
-from flask_wtf.file import FileField, FileRequired, FileAllowed
-from flask_wtf.recaptcha import RecaptchaField
 import os
 app = Flask(__name__)
 app.config.from_object(__name__)

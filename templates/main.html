@@ -6,12 +6,9 @@
 	<body>
 		{% for user in users %}
 			{% if user !='' or user !='/' or user[8:]!='/' %}
-				<!-- <p> -->
 					<a href="{{user[14:]}}">
-					<!-- {{user[9:]}} -->
 					<img src="{{url_for('static', filename= 'thumbs/'+user[15:])}}">
 					</a>
-				<!-- </p> -->
 			{% endif %}
 		{% endfor %}
 	</body>

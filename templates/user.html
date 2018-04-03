@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 	<head>
 		<link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
 		
-		<title></title>
+		<title>{{user}}</title>
 	</head>
 	<body>
-		<p>Pictures:<br>
-			{% if img_loc is not none %}
-				{% for imgs in img_loc %}
-					{% if imgs !='' %}
-						<!-- {{img_loc}}
-						{{imgs}} -->
-						<!-- <img class="myImg"src="{{url_for('static', filename= user+'/'+imgs )}}"width="20%" height="20%"> -->
-						<!-- <img src="{{url_for('static',filename=user+'/'+imgs)}}"> -->
+		{% if img_loc is not none %}
+			{% for imgs in img_loc %}
+				{% if imgs !='' %}
+					{% if imgs[-4:]=='.jpg' %}
 						<a class="lightbox" href="#{{imgs}}">
 							<img class="myImg"src="{{url_for('static', filename= "users/"+user+'/'+imgs  )}}" width="20%" height="20%">
 						</a>
@@ -22,7 +25,45 @@
 							
 							<a class="lightbox-close" href="#"></a>
 						</div>
-					</div>
+					{% else %}
+						<script type="text/javascript">
+							// ---- Definitions ----- //
+						/**
+						Returns the dimensions of a video asynchrounsly.
+						@param {String} url Url of the video to get dimensions from.
+						@return {Promise} Promise which returns the dimensions of the video in 'width' and 'height' properties.
+						*/
+						function getVideoDimensionsOf(url){
+						return new Promise(function(resolve){
+						// create the video element
+						let video = document.createElement('video');
+						// place a listener on it
+						video.addEventListener( "loadedmetadata", function () {
+						// retrieve dimensions
+						let height = this.videoHeight;
+						let width = this.videoWidth;
+						// send back result
+						resolve({
+						height : height,
+						width : width
+						});
+						}, false );
+						// start download meta-datas
+						video.src = url;
+						});
+						}
+						// ---- Usation ---- //
+						getVideoDimensionsOf("{{url_for('static', filename= "users/"+user+'/'+imgs  )}}")
+						.then(function(dimensions){
+						console.log("Video width: " + dimensions.width) ;
+						console.log("Video height: " + dimensions.height) ;
+						});
+						</script>
+						<video position="relative !important" width="12.5% !important" class="clip-thumbnail">
+							<source src="{{url_for('static', filename= "users/"+user+'/'+imgs  )}}" type="video/mp4">
+						</video>
+						
+					{% endif %}
 				{% endif %}
 			{% endfor %}
 		{% endif%}
