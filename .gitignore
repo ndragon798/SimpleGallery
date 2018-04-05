@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#Ignore User Added Files
+/static/thumbs
+/static/users
