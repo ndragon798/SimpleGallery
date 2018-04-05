@@ -30,9 +30,10 @@ def userpage(user=''):
 		print(files)
 		img_loc=files
 	for i in img_loc:
-		if i[-4:]=='.mp4':
+		if i[-4:]=='.mp4' and i[:-4]+'.jpg' not in img_loc:
 			getposter('./static/users/'+user+'/'+i)
-
+		if i[:-4]+'.jpg' in img_loc:
+			del img_loc[img_loc.index(i[:-4]+'.jpg')]
 	return render_template('user.html',img_loc=img_loc,user=user)
 
 @app.route("/")
