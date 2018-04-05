@@ -6,9 +6,9 @@
 	<body>
 		{% for user in users %}
 			{% if user !='' or user !='/' or user[8:]!='/' %}
-					<a href="{{user[14:]}}">
+				<a href="{{user[14:]}}">
 					<img src="{{url_for('static', filename= 'thumbs/'+user[15:]+".jpg")}}">
-					</a>
+				</a>
 			{% endif %}
 		{% endfor %}
 	</body>

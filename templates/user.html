@@ -7,9 +7,8 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
 	<head>
-		<link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
-		<link rel="stylesheet" href="{{ url_for('static', filename='user.css') }}">
 		
 		<title>{{user}}</title>
 	</head>
@@ -31,7 +30,7 @@
 							<img class="myImg"src="{{url_for('static', filename= "users/"+user+'/'+imgs[:-4]+'.jpg'  )}}" width="20%" height="20%">
 						</a>
 						<div class="lightbox-target" id="{{imgs}}">
-							<video class='myImg' controls width="20% !important" 
+							<video class='myImg' controls width="20% !important"
 								poster="{{url_for('static',filename='users/'+user+'/'+imgs[:-4]+'.jpg' )}}">
 								<source class='myImg' src="{{url_for('static', filename= "users/"+user+'/'+imgs  )}}" type="video/mp4">
 							</video>
